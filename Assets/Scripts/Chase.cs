@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Chase : MonoBehaviour {
 
     public Transform player;
     static Animator anim;
+    public Slider healthbar;
 
     private void Start()
     {
@@ -14,6 +16,9 @@ public class Chase : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        //stops enemy from following player once dead
+        if (healthbar.value <= 0) return;
+
         Vector3 direction = player.position - this.transform.position;
         //gets forward direction of skeleton and direction to player
         float angle = Vector3.Angle(direction, this.transform.forward);
